@@ -31,7 +31,7 @@
     }
 
     /*Medium and small screen 640 px */
-    @@media (min-width: 640px) {
+    @media (min-width: 640px) {
       html {font-size: 112%}
 
       .column {
@@ -47,6 +47,6 @@
       .column.flow-opposite {float: right; }
     }
     /* Large Screens 1024px */
-    @@media (min-width: 1024px) {
+    @media (min-width: 1024px) {
       html {font-size: 120%}
     }
