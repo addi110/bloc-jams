@@ -73,7 +73,12 @@ window.onload = function () {
             event.target.parentElement.querySelector('.song-item-number').innerHTML = playButtonTemplate;
         }
     });
-
+// This works too
+// for (var i = 0; i < songRows.length; i++) {
+//     songRows[i].addEventListener('mouseover', function (event) {
+//         this.children[0].innerHTML = playButtonTemplate;
+//     });
+// }
         for (var i = 0; i < songRows.length; i++) {
             songRows[i].addEventListener('mouseleave', function (event) {
                 this.children[0].innerHTML = this.children[0].getAttribute('data-song-number');
