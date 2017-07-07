@@ -28,6 +28,21 @@ var albumMarconi = {
     ]
 };
 
+var albumCokeStudio = {
+    title: 'Coke Studio',
+    artist: 'Season 9',
+    label: 'RBT',
+    year: '2016',
+    albumArtUrl: 'assets/images/album_covers/22.jpg',
+    songs: [
+        { title: 'Aye Rah-e-Haq ke Shaheedo', duration: '3:03' },
+        { title: 'Aaqa', duration: '8:27' },
+        { title: 'Aja Re Moray Saiyaan', duration: '6:11' },
+        { title: 'Janay Na Tu', duration: '6:40' },
+        { title: 'Maula-e-Kull', duration: '9:52' }
+    ]
+};
+
 var createSongRow = function (songNumber, songName, songLength) {
     var template =
       ' <tr class="album-view-song-item">'
@@ -41,13 +56,13 @@ return template;
 
 };
 
-var setCurrentAlbum = function (album) {
-    var albumTitle = document.getElementsByClassName('album-view-title')[0];
-    var albumArtist = document.getElementsByClassName('album-view-artist')[0];
-    var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
-    var albumImage = document.getElementsByClassName('album-cover-art')[0];
-    var songListTable = document.getElementsByClassName('album-view-song-list')[0];
+var albumTitle = document.getElementsByClassName('album-view-title')[0];
+var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+var albumImage = document.getElementsByClassName('album-cover-art')[0];
+var songListTable = document.getElementsByClassName('album-view-song-list')[0];
 
+var setCurrentAlbum = function (album) {
     albumTitle.innerText = album.title;
     albumArtist.innerText = album.artist;
     albumReleaseInfo.innerText = album.year + ' ' + album.label;
@@ -60,6 +75,19 @@ var setCurrentAlbum = function (album) {
     }
 };
 
+
+
 window.onload = function () {
     setCurrentAlbum(albumPicasso);
+
+    var albums = [ albumPicasso, albumMarconi, albumCokeStudio ];
+    var index = 0;
+
+    albumImage.addEventListener('click', function (event) {
+    setCurrentAlbum(albums[index]);
+    index++;
+    if ( index == albums.length) {
+        index = 0;
+       }
+    });
 };
