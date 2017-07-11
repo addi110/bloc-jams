@@ -46,17 +46,17 @@ var setCurrentAlbum = function (album) {
     var albumArtist = document.getElementsByClassName('album-view-artist')[0];
     var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
     var albumImage = document.getElementsByClassName('album-cover-art')[0];
-    var songListTable = document.getElementsByClassName('album-view-song-list')[0];
+    var songListContainer = document.getElementsByClassName('album-view-song-list')[0];
 
     albumTitle.innerText = album.title;
     albumArtist.innerText = album.artist;
     albumReleaseInfo.innerText = album.year + ' ' + album.label;
     albumImage.setAttribute('src', album.albumArtUrl);
 
-    songListTable.innerHTML = '';
+    songListContainer.innerHTML = '';
 
     for (var i = 0; i < album.songs.length; i++) {
-        songListTable.innerHTML += createSongRow(i + 1, album.songs[i].title, album.songs[i].duration);
+        songListContainer.innerHTML += createSongRow(i + 1, album.songs[i].title, album.songs[i].duration);
     }
 };
 var songListContainer = document.getElementsByClassName('album-view-song-list')[0];
@@ -124,12 +124,13 @@ window.onload = function () {
     //         event.target.parentElement.querySelector('.song-item-number').innerHTML = playButtonTemplate;
     //     }
     // });
-
-        var songItem = getSongItem(event.target);
+        if (event.target.parentElement.className === 'album-view-song-item') {
+          var songItem = getSongItem(event.target);
 
         if (songItem.getAttribute('data-song-number') !== currentlyPlayingSong) {
             songItem.innerHTML = playButtonTemplate;
         }
+      }
     });
 // This works too
 // for (var i = 0; i < songRows.length; i++) {
@@ -139,8 +140,8 @@ window.onload = function () {
 // }
         for (var i = 0; i < songRows.length; i++) {
             songRows[i].addEventListener('mouseleave', function (event) {
-                var songItem = getSongItem(event.target);
-                var songItemNumber = songItem.getAttribute('data-song-number');
+              var songItem = getSongItem(event.target);
+              var songItemNumber = songItem.getAttribute('data-song-number');
 
                 if (songItemNumber !== currentlyPlayingSong) {
                     songItem.innerHTML = songItemNumber;
