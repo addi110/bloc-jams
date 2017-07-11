@@ -124,7 +124,7 @@ window.onload = function () {
     //         event.target.parentElement.querySelector('.song-item-number').innerHTML = playButtonTemplate;
     //     }
     // });
-        if (event.target.parentElement.className == '.album-view-song-item') {
+        if (event.target.parentElement.className === 'album-view-song-item') {
           var songItem = getSongItem(event.target);
 
         if (songItem.getAttribute('data-song-number') !== currentlyPlayingSong) {
